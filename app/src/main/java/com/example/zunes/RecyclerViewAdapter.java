@@ -1,8 +1,14 @@
 package com.example.zunes;
 
+import android.annotation.SuppressLint;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         final Post post = postList.get(position);
@@ -36,6 +43,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.username.setText(post.getUsername());
         Glide.with(holder.itemView.getContext()).load(post.getAlbumCover()).into(holder.albumCover);
         holder.description.setText(post.getDescription());
+        holder.webView.loadData(post.getWebView(),"text/html", null);
+
+        holder.webView.setInitialScale(1);
+        holder.webView.setWebChromeClient(new WebChromeClient());
+        holder.webView.getSettings().setAllowFileAccess(true);
+        holder.webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        holder.webView.getSettings().setPluginState(WebSettings.PluginState.ON_DEMAND);
+        holder.webView.setWebViewClient(new WebViewClient());
+        holder.webView.getSettings().setJavaScriptEnabled(true);
+        holder.webView.getSettings().setLoadWithOverviewMode(true);
+        holder.webView.getSettings().setUseWideViewPort(true);
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+
 
     }
 
@@ -49,6 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private TextView username;
         private ImageView albumCover;
         private TextView description;
+        private WebView webView;
         //private CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -57,6 +80,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             username = itemView.findViewById(R.id.userName);
             albumCover = itemView.findViewById(R.id.albumCover);
             description = itemView.findViewById(R.id.description);
+            webView = itemView.findViewById(R.id.postPlayer);
 //            cardView = itemView.findViewById(R.id.carView);
         }
     }
