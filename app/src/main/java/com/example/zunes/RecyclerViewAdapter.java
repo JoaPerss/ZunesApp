@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
@@ -32,7 +34,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.songinfo.setText(post.getSongInfo());
         holder.username.setText(post.getUsername());
-        holder.albumCover.setImageBitmap(post.getAlbumCover());
+        Glide.with(holder.itemView.getContext()).load(post.getAlbumCover()).into(holder.albumCover);
         holder.description.setText(post.getDescription());
 
     }

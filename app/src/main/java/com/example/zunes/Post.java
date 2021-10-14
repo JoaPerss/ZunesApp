@@ -1,15 +1,16 @@
 package com.example.zunes;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 public class Post {
     private String songInfo;
     private String username;
-    private Bitmap albumCover;
+    private String albumCover;
     private String description;
     private String webView;
 
-    public Post(String songInfo, String username, Bitmap albumCover, String description, String webView) {
+    public Post(String songInfo, String username, String albumCover, String description, String webView) {
         this.songInfo = songInfo;
         this.username = username;
         this.albumCover = albumCover;
@@ -35,11 +36,11 @@ public class Post {
         this.username = username;
     }
 
-    public Bitmap getAlbumCover() {
+    public String getAlbumCover() {
         return albumCover;
     }
 
-    public void setAlbumCover(Bitmap albumCover) {
+    public void setAlbumCover(String albumCover) {
         this.albumCover = albumCover;
     }
 
