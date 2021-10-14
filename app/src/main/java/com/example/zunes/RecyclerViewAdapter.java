@@ -3,6 +3,7 @@ package com.example.zunes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.songinfo.setText(post.getSongInfo());
         holder.username.setText(post.getUsername());
+        holder.albumCover.setImageBitmap(post.getAlbumCover());
         holder.description.setText(post.getDescription());
 
     }
@@ -43,6 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView songinfo;
         private TextView username;
+        private ImageView albumCover;
         private TextView description;
         //private CardView cardView;
 
@@ -50,6 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             songinfo = itemView.findViewById(R.id.songInfo);
             username = itemView.findViewById(R.id.userName);
+            albumCover = itemView.findViewById(R.id.albumCover);
             description = itemView.findViewById(R.id.description);
 //            cardView = itemView.findViewById(R.id.carView);
         }
