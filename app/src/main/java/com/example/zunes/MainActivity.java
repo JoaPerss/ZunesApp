@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar;
 
         postList = new ArrayList<>();
         thread.start();
@@ -41,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(recyclerViewAdapter);
 
+        toolbar();
+    }
+
+    private void toolbar() {
+        Toolbar toolbar;
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Zunes");
     }
-
-
-//https://i.scdn.co/image/ab67616d0000b273fcc1ef4b803dd2a5acecf42d
 
     Thread thread = new Thread(new Runnable() {
     @Override
