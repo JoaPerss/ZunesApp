@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MakePost"
     >
 
     <androidx.appcompat.widget.Toolbar
@@ -68,13 +69,16 @@
         android:layout_marginTop="68dp"
         android:background="@drawable/bigger_custom_input"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:lines="5"
+        android:gravity="top"
+        android:fontFamily="@font/roboto_mono_bold"
         android:text="@string/write_something"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instructions2"
-        android:autofillHints=""
-        tools:ignore="LabelFor" />
+ />
 
 
 

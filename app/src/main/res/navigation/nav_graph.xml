@@ -10,4 +10,9 @@
         android:name="com.example.zunes.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/makePost"
+        android:name="com.example.zunes.MakePost"
+        android:label="make_post"
+        tools:layout="@layout/make_post" />
 </navigation>
