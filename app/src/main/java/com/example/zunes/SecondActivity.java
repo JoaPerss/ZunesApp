@@ -1,9 +1,11 @@
 package com.example.zunes;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.Bundle;
+import java.util.Objects;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -19,7 +21,7 @@ public class SecondActivity extends AppCompatActivity {
         Toolbar toolbar;
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Zunes");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Zunes");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

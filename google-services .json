@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "678263498390",
+    "project_id": "zunes-86b9b",
+    "storage_bucket": "zunes-86b9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678263498390:android:d5b328a46daaa29d65c4b7",
+        "android_client_info": {
+          "package_name": "com.example.zunes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "678263498390-i9l69j70abc42ktj3b2bu9srvl01n24e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeFtiLkNQw-mPuvtfQ7xmhhS2FrM9Wb6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678263498390-i9l69j70abc42ktj3b2bu9srvl01n24e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
