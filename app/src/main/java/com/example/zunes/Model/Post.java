@@ -1,14 +1,23 @@
-package com.example.zunes;
+package com.example.zunes.Model;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import com.google.firebase.firestore.Exclude;
 
 public class Post {
+    private String pId;
     private String songInfo;
     private String username;
     private String albumCover;
     private String description;
     private String webView;
+
+    public Post(String pId, String songInfo, String username, String albumCover, String description, String webView) {
+        this.pId = pId;
+        this.songInfo = songInfo;
+        this.username = username;
+        this.albumCover = albumCover;
+        this.description = description;
+        this.webView = webView;
+    }
 
     public Post(String songInfo, String username, String albumCover, String description, String webView) {
         this.songInfo = songInfo;
@@ -18,7 +27,17 @@ public class Post {
         this.webView = webView;
     }
 
+    public Post() {
+    }
 
+    @Exclude
+    public String getpId() {
+        return pId;
+    }
+
+    public void setpId(String pId) {
+        this.pId = pId;
+    }
 
     public String getSongInfo() {
         return songInfo;
