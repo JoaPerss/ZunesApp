@@ -5,4 +5,5 @@
     <string name="start_by_searching_for_a_song_you_like">Start by searching for a song you like</string>
     <string name="instructions2">Next, say something about this song</string>
     <string name="write_something">Write something</string>
+    <string name="publish_post">Publish post</string>
 </resources>

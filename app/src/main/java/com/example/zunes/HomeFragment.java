@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -139,11 +140,7 @@ public class HomeFragment extends Fragment {
 
     private void fabAction() {
         final FloatingActionButton fab = getView().findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(view -> {
-            //Navigation.findNavController(view).navigate(R.id.);
-            Intent intent = new Intent(getActivity().getApplicationContext(),SecondActivity.class);
-            startActivity(intent);
-        });
+        fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_postFragment));
     }
     private void toolbar() {
         Toolbar toolbar;
