@@ -1,50 +1,67 @@
 package com.example.zunes;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.Navigation;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.example.zunes.Model.Post;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+public class HomeFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private RecyclerViewAdapter recyclerViewAdapter;
+
+    private List<Post> postList;
+    private List<String> postIdList;
+
+    private static final String TAG = HomeFragment.class.getSimpleName();
+
+    private FirebaseFirestore firestoreDb;
+    private CollectionReference postCollectionReference;
+    private ListenerRegistration fireStoreListenerReg;
+
+    public HomeFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
 
-/*
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         postList = new ArrayList<>();
         postIdList = new ArrayList<>();
 
-        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view);
         recyclerViewAdapter = new RecyclerViewAdapter(postList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -55,25 +72,22 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar();
         fabAction();
-*/
+
     }
-/*
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (fireStoreListenerReg != null)
             fireStoreListenerReg.remove();
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         createFireStoreReadListener();
     }
-
     private void createFireStoreReadListener() {
-*/
 /*
         postCollectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -92,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-*//*
-
+*/
         fireStoreListenerReg = postCollectionReference.addSnapshotListener((value, error) -> {
             if (error != null){
                 Log.w(TAG, "Listen failed.", error);
@@ -125,44 +138,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fabAction() {
-        final FloatingActionButton fab = findViewById(R.id.floatingActionButton);
+        final FloatingActionButton fab = getView().findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
             //Navigation.findNavController(view).navigate(R.id.);
-            Intent intent = new Intent(getApplicationContext(),SecondActivity.class);
+            Intent intent = new Intent(getActivity().getApplicationContext(),SecondActivity.class);
             startActivity(intent);
         });
     }
-
     private void toolbar() {
         Toolbar toolbar;
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Zunes");
+        toolbar = getView().findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Zunes");
     }
-
-    Thread thread = new Thread(new Runnable() {
-    @Override
-    public void run() {
-        try {
-                Post post = new Post("Passion - PinkPantheress", "@joaperss", "https://i.scdn.co/image/ab67616d0000b273fcc1ef4b803dd2a5acecf42d", "Denne går på repeat", "<iframe src=\"https://open.spotify.com/embed/track/6ZJqCviTotiIujl1rfcL53?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>");
-                postList.add(post);
-                post = new Post("family ties - baby keem", "@joaperss", "https://i.scdn.co/image/ab67616d0000b273163028c67a1f4a7c0e83a715", "diditagainanddiditagain", "<iframe src=\"https://open.spotify.com/embed/track/7Bpx2vsWfQFBACRz4h3IqH?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>");
-                postList.add(post);
-                post = new Post("Bislett Stadion - Oslo Ess", "@joaperss", "https://i.scdn.co/image/ab67616d0000b273e2a9957f99b8e907902491a2", "Klassiker", "<iframe src=\"https://open.spotify.com/embed/track/30wOsGGJ89E6LJkvVJKpSm\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>");
-                postList.add(post);
-                post = new Post("Kids - MGMT", "@joaperss", "https://i.scdn.co/image/ab67616d0000b2738b32b139981e79f2ebe005eb", "Taler for seg selv", "<iframe src=\"https://open.spotify.com/embed/track/1jJci4qxiYcOHhQR247rEU?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>");
-                postList.add(post);
-                post = new Post("Freaks - Surf Curse", "@joaperss", "https://i.scdn.co/image/ab67616d0000b2739efda673310de265a2c1cf1f", "vibes", "<iframe src=\"https://open.spotify.com/embed/track/7EkWXAI1wn8Ii883ecd9xr?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>");
-                postList.add(post);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        for (Post post : postList){
-            postCollectionReference.add(post);
-        }
-    }
-});
-*/
 
 }
