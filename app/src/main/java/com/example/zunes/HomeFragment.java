@@ -27,6 +27,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
@@ -113,6 +114,7 @@ public class HomeFragment extends Fragment {
                 Log.w(TAG, "Listen failed.", error);
                 return;
             }
+            assert value != null;
             for (DocumentChange documentChange : value.getDocumentChanges()){
                 QueryDocumentSnapshot documentSnapshot = documentChange.getDocument();
                 Post post = documentSnapshot.toObject(Post.class);
@@ -139,14 +141,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void fabAction() {
-        final FloatingActionButton fab = getView().findViewById(R.id.floatingActionButton);
+        final FloatingActionButton fab = requireView().findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_postFragment));
     }
     private void toolbar() {
         Toolbar toolbar;
-        toolbar = getView().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Zunes");
+        toolbar = requireView().findViewById(R.id.toolbar);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Zunes");
     }
 
 }
