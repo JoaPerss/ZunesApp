@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Zunes</string>
     <string name="Title">Zunes</string>
     <string name="make_new_post">Make new post</string>
     <string name="start_by_searching_for_a_song_you_like">Start by searching for a song you like</string>
     <string name="instructions2">Next, say something about this song</string>
     <string name="write_something">Write something</string>
+    <string name="publish_post">Publish post</string>
+    <string name="home">Home</string>
+    <string name="post">Post</string>
 </resources>

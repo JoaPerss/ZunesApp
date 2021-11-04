@@ -7,7 +7,9 @@
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/bigger_custom_input.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/custom_input.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_back_button_image.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_home.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_search.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -19,6 +21,7 @@
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/list_item.xml" value="0.559375" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/make_post.xml" value="0.33" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/make_post2.xml" value="0.371875" />
+        <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/menu/bottom_menu.xml" value="0.5" />
       </map>
     </option>
   </component>

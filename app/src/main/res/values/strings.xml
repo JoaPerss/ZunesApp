@@ -6,4 +6,7 @@
     <string name="instructions2">Next, say something about this song</string>
     <string name="write_something">Write something</string>
     <string name="publish_post">Publish post</string>
+    <string name="home">Home</string>
+    <string name="post">Post</string>
+    <string name="profile">Profile</string>
 </resources>
