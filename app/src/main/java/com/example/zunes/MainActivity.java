@@ -10,14 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zunes.Model.Post;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -37,108 +42,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 /*
-        postList = new ArrayList<>();
-        postIdList = new ArrayList<>();
 
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerViewAdapter = new RecyclerViewAdapter(postList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        NavController controller = Navigation.findNavController(this, R.id.navHostFragment);
 
-        recyclerView.setAdapter(recyclerViewAdapter);
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        NavigationUI.setupWithNavController(bottomNavigation,controller);
 
-        firestoreDb = FirebaseFirestore.getInstance();
-        postCollectionReference = firestoreDb.collection("posts");
-        //thread.start();
-
-        toolbar();
-        fabAction();
+        NavigationView drawerView = findViewById(R.id.navigation_view);
+        NavigationUI.setupWithNavController(drawerView, controller);
 */
     }
 /*
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (fireStoreListenerReg != null)
-            fireStoreListenerReg.remove();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        createFireStoreReadListener();
-    }
-
-    private void createFireStoreReadListener() {
-*/
-/*
-        postCollectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                        Post post = documentSnapshot.toObject(Post.class);
-                        post.setpId(documentSnapshot.getId());
-                        postList.add(post);
-                        postIdList.add(post.getpId());
-                    }
-                    recyclerViewAdapter.notifyDataSetChanged();
-                }else{
-                    Log.d(TAG, "Error getting documents: " + task.getException());
-                }
-
-            }
-        });
-*//*
-
-        fireStoreListenerReg = postCollectionReference.addSnapshotListener((value, error) -> {
-            if (error != null){
-                Log.w(TAG, "Listen failed.", error);
-                return;
-            }
-            for (DocumentChange documentChange : value.getDocumentChanges()){
-                QueryDocumentSnapshot documentSnapshot = documentChange.getDocument();
-                Post post = documentSnapshot.toObject(Post.class);
-                post.setpId(documentSnapshot.getId());
-                int pos = postIdList.indexOf(post.getpId());
-
-                switch (documentChange.getType()){
-                    case ADDED:
-                        postList.add(post);
-                        postIdList.add(post.getpId());
-                        recyclerViewAdapter.notifyItemInserted(postList.size()-1);
-                        break;
-                    case REMOVED:
-                        postList.remove(pos);
-                        postIdList.remove(pos);
-                        recyclerViewAdapter.notifyItemRemoved(pos);
-                    case MODIFIED:
-                        postList.set(pos, post);
-                        recyclerViewAdapter.notifyItemChanged(pos);
-                        break;
-                }
-            }
-        });
-    }
-
-    private void fabAction() {
-        final FloatingActionButton fab = findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(view -> {
-            //Navigation.findNavController(view).navigate(R.id.);
-            Intent intent = new Intent(getApplicationContext(),SecondActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    private void toolbar() {
-        Toolbar toolbar;
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Zunes");
-    }
 
     Thread thread = new Thread(new Runnable() {
     @Override
