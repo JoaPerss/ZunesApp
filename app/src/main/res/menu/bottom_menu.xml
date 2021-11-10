@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_baseline_add_box_24"
         android:title="@string/post" />-->
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/userFragment"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/profile" />
 
