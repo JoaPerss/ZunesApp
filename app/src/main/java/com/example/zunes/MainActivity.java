@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                     signInLauncher.launch(AuthUI.getInstance()
                             .createSignInIntentBuilder()
                             .setAvailableProviders(providers)
-                            .setTheme(R.style.AppTheme)
                             .build());
 
                 }
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if (result.getResultCode() == RESULT_OK) {
             FirebaseUser currentUser = auth.getCurrentUser();
             assert currentUser != null;
-            Toast.makeText(getApplicationContext(), "Signed in as " + currentUser.getDisplayName(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Signed in as " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
         }
         else {
             Toast.makeText(getApplicationContext(), "Signed in cancelled", Toast.LENGTH_LONG).show();
