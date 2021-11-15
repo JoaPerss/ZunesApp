@@ -40,8 +40,6 @@ public class UserFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_user, container, false);
     }
 
-
-
     @SuppressLint("RestrictedApi")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -80,7 +78,6 @@ public class UserFragment extends Fragment {
             }
         });
     }
-
 
     private void toolbar() {
         Toolbar toolbar;
