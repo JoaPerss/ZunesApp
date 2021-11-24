@@ -1,6 +1,5 @@
 package com.example.zunes;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,6 +51,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+
     }
 
     @Override
@@ -70,10 +70,15 @@ public class HomeFragment extends Fragment {
 
         firestoreDb = FirebaseFirestore.getInstance();
         postCollectionReference = firestoreDb.collection("posts");
-        //thread.start();
+
+        /*
+        Post test = new Post("Dette er en test","12","12","12","12");
+        postCollectionReference.add(test);
+        */
 
         toolbar();
         fabAction();
+
 
     }
 
@@ -140,8 +145,15 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    public void addPostToPostList(Post post){
+        firestoreDb = FirebaseFirestore.getInstance();
+        postCollectionReference = firestoreDb.collection("posts");
+
+        postCollectionReference.add(post);
+    }
+
     private void fabAction() {
-        final FloatingActionButton fab = requireView().findViewById(R.id.floatingActionButton);
+        final FloatingActionButton fab = requireView().findViewById(R.id.postFab);
         fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_postFragment));
     }
     private void toolbar() {

@@ -82,7 +82,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             albumCover = itemView.findViewById(R.id.albumCover);
             description = itemView.findViewById(R.id.description);
             webView = itemView.findViewById(R.id.postPlayer);
-//            cardView = itemView.findViewById(R.id.carView);
         }
     }
 }

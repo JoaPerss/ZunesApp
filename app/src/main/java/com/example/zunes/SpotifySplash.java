@@ -8,11 +8,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
@@ -58,6 +61,7 @@ public class SpotifySplash extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("SPOTIFY", 0).edit();
                     editor.putString("token", response.getAccessToken());
                     Log.d("STARTING", "GOT AUTH TOKEN");
+                    Log.d("TOKEN; ", response.getAccessToken());
                     Toast.makeText(getApplicationContext(),"Spotify Sign in succsessful", Toast.LENGTH_SHORT).show();
                     editor.apply();
                     startMainActivity();
@@ -82,5 +86,6 @@ public class SpotifySplash extends AppCompatActivity {
         Intent intent = new Intent(SpotifySplash.this, MainActivity.class);
         startActivity(intent);
     }
+
 
 }
