@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -57,6 +58,7 @@ public class SpotifySplash extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("SPOTIFY", 0).edit();
                     editor.putString("token", response.getAccessToken());
                     Log.d("STARTING", "GOT AUTH TOKEN");
+                    Toast.makeText(getApplicationContext(),"Spotify Sign in succsessful", Toast.LENGTH_SHORT).show();
                     editor.apply();
                     startMainActivity();
                     break;
@@ -64,11 +66,14 @@ public class SpotifySplash extends AppCompatActivity {
                 // Auth flow returned an error
                 case ERROR:
                     // Handle error response
+                    Log.d("Error", "error");
+                    Toast.makeText(getApplicationContext(),"Spotify Sign in unsuccsessful", Toast.LENGTH_SHORT).show();
                     break;
 
                 // Most likely auth flow was cancelled
                 default:
-                    // Handle other cases
+                    Log.d("Default", "");
+                    Toast.makeText(getApplicationContext(), "Auth flow cancelled", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -45,10 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    final int REQUEST_CODE = 1337;
-    final String REDIRECT_URI = "zunes://callback";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,49 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         createAuthStateListener();
 
-        AuthorizationClient.clearCookies(getApplicationContext());
-
-        //spotifyLoginActivity();
-
-    }
-/*
-
-    public void spotifyLoginActivity() {
-
-        AuthorizationRequest.Builder builder =
-                new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
-
-        builder.setScopes(new String[]{"streaming"});
-        AuthorizationRequest request = builder.build();
-
-        AuthorizationClient.openLoginActivity(this, REQUEST_CODE, request);
-
-
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE) {
-            AuthorizationResponse response = AuthorizationClient.getResponse(resultCode,data);
-
-            switch (response.getType()){
-                case TOKEN:
-                    Log.d("Success", "Funker");
-                    Toast.makeText(getApplicationContext(),"Spotify Sign in succsessful", Toast.LENGTH_SHORT).show();
-                    break;
-                case ERROR:
-                    Log.d("ERROR", "Funker ikke");
-                    Toast.makeText(getApplicationContext(),"Spotify Sign in unsuccsessful", Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    Log.d("IDK", "Hvorfor kjører denne");
-            }
-        }
-    }
-
-*/
     private void createAuthStateListener() {
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

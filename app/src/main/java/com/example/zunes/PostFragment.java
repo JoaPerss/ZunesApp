@@ -52,6 +52,7 @@ public class PostFragment extends Fragment {
 // Most (but not all) of the Spotify Web API endpoints require authorisation.
 // If you know you'll only use the ones that don't require authorisation you can skip this step
         api.setAccessToken("BQAC0HfeiWIS-4FItdLJcEk3b5I-WSnrwkVbYpyxqaNomSWxqR2QYh_o_D3P2HakGL4rc6RF4j0ioMT5eQWa_-gGqkNO9JOGldFVty88ZD1PG6weXwDpA5nzcnX6qKcPDPqhSE-kAsk");
+        //api.setAccessToken();
 
         SpotifyService spotify = api.getService();
 
