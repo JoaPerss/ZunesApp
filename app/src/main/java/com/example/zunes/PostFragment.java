@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcel;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import com.example.zunes.Model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,6 +30,8 @@ import kaaes.spotify.webapi.android.models.Album;
 import kaaes.spotify.webapi.android.SpotifyCallback;
 import kaaes.spotify.webapi.android.models.Artist;
 import kaaes.spotify.webapi.android.models.ArtistsPager;
+import kaaes.spotify.webapi.android.models.Track;
+import kaaes.spotify.webapi.android.models.TracksPager;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -72,8 +76,10 @@ public class PostFragment extends Fragment {
                 String songName = editTextSongName.getText().toString();
                 String description = editTextDescription.getText().toString();
 
+                MainActivity mainActivity = new MainActivity();
+                String username = mainActivity.getUsernameOfCurrentUser();
 
-                Post newPost= new Post(songName, "@test", "", description, "");
+                Post newPost= new Post(songName, "@" + username, "", description, "");
 
                 HomeFragment help = new HomeFragment();
 
@@ -82,16 +88,37 @@ public class PostFragment extends Fragment {
                 Log.d("songName", songName);
                 Log.d("description", description);
 
+                //spotifySearch(String songName){
+                //return spotifySongName,albumCover, webviewID
+                //}
+
+
             }
         });
     }
 
-    private void spotifySearch() {
-        SpotifyApi api = new SpotifyApi();
-        api.setAccessToken("BQAC0HfeiWIS-4FItdLJcEk3b5I-WSnrwkVbYpyxqaNomSWxqR2QYh_o_D3P2HakGL4rc6RF4j0ioMT5eQWa_-gGqkNO9JOGldFVty88ZD1PG6weXwDpA5nzcnX6qKcPDPqhSE-kAsk");
-        //api.setAccessToken();
+        private void spotifySearch () {
+            SpotifySplash spotifySplash = new SpotifySplash();
+            String authToken = spotifySplash.getAuthToken();
+            SpotifyApi api = new SpotifyApi();
+            api.setAccessToken(authToken);
+            SpotifyService spotify = api.getService();
 
-        SpotifyService spotify = api.getService();
+
+        spotify.searchTracks("family ties", new Callback<TracksPager>() {
+            @Override
+            public void success(TracksPager tracksPager, Response response) {
+                Log.d("Fant den",tracksPager.tracks.href);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("Fant ikke", error.getMessage());
+            }
+        });
+
+
+/*
         spotify.getAlbum("2dIGnmEIy1WZIcZCFSj6i8", new Callback<Album>() {
             @Override
             public void success(Album album, Response response) {
@@ -102,7 +129,9 @@ public class PostFragment extends Fragment {
                 Log.d("Album failure", error.toString());
             }
         });
-    }
+*/
+
+        }
 
     private void toolbar() {
         Toolbar toolbar;

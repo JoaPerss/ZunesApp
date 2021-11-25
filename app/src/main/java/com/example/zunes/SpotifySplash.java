@@ -28,6 +28,7 @@ public class SpotifySplash extends AppCompatActivity {
     private static final String REDIRECT_URI = "com.zunes://callback";
     private static final int REQUEST_CODE = 1337;
     private static final String SCOPES = "user-read-recently-played,user-library-modify,user-read-email,user-read-private";
+    public static String authToken;
 
 
     @Override
@@ -64,6 +65,10 @@ public class SpotifySplash extends AppCompatActivity {
                     Log.d("TOKEN; ", response.getAccessToken());
                     Toast.makeText(getApplicationContext(),"Spotify Sign in succsessful", Toast.LENGTH_SHORT).show();
                     editor.apply();
+
+                    authToken = response.getAccessToken();
+                    setAuthToken(authToken);
+
                     startMainActivity();
                     break;
 
@@ -76,16 +81,24 @@ public class SpotifySplash extends AppCompatActivity {
 
                 // Most likely auth flow was cancelled
                 default:
-                    Log.d("Default", "");
+                    Log.d("Default", "Auth flow cancelled");
                     Toast.makeText(getApplicationContext(), "Auth flow cancelled", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+
+    public String getAuthToken() {
+        return authToken;
     }
 
     private void startMainActivity() {
         Intent intent = new Intent(SpotifySplash.this, MainActivity.class);
         startActivity(intent);
     }
-
 
 }

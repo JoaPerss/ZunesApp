@@ -32,6 +32,7 @@ import com.spotify.sdk.android.auth.AuthorizationResponse;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -104,7 +105,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    public String getUsernameOfCurrentUser(){
+        return Objects.requireNonNull(auth.getCurrentUser()).getDisplayName();
+    }
 
 /*
     Thread thread = new Thread(new Runnable() {
