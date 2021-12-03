@@ -71,15 +71,8 @@ public class HomeFragment extends Fragment {
         firestoreDb = FirebaseFirestore.getInstance();
         postCollectionReference = firestoreDb.collection("posts");
 
-        /*
-        Post test = new Post("Dette er en test","12","12","12","12");
-        postCollectionReference.add(test);
-        */
-
         toolbar();
         fabAction();
-
-
     }
 
     @Override
@@ -95,25 +88,6 @@ public class HomeFragment extends Fragment {
         createFireStoreReadListener();
     }
     private void createFireStoreReadListener() {
-/*
-        postCollectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()){
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                        Post post = documentSnapshot.toObject(Post.class);
-                        post.setpId(documentSnapshot.getId());
-                        postList.add(post);
-                        postIdList.add(post.getpId());
-                    }
-                    recyclerViewAdapter.notifyDataSetChanged();
-                }else{
-                    Log.d(TAG, "Error getting documents: " + task.getException());
-                }
-
-            }
-        });
-*/
         fireStoreListenerReg = postCollectionReference.addSnapshotListener((value, error) -> {
             if (error != null){
                 Log.w(TAG, "Listen failed.", error);

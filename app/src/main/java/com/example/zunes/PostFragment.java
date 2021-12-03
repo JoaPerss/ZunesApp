@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zunes.Model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
@@ -43,6 +45,7 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         /// Inflate the layout for this fragment
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return inflater.inflate(R.layout.fragment_post, container, false);
     }
 
@@ -93,11 +96,13 @@ public class PostFragment extends Fragment {
                 HomeFragment homeFragment = new HomeFragment();
                 homeFragment.addPostToPostList(newPost);
 
+                Snackbar.make(getView(),"Post succsessfully posted, check your feed!", Snackbar.LENGTH_LONG).show();
+
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("Fant ikke", error.getMessage());
+                Snackbar.make(getView(), "An error occured while searching", Snackbar.LENGTH_LONG).show();
             }
         });
     }
