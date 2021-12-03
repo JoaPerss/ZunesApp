@@ -2,25 +2,18 @@ package com.example.zunes;
 
 import static com.spotify.sdk.android.auth.AuthorizationResponse.Type.TOKEN;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
-
-import java.util.Objects;
 
 public class SpotifySplash extends AppCompatActivity {
 
@@ -88,7 +81,7 @@ public class SpotifySplash extends AppCompatActivity {
     }
 
     public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+        SpotifySplash.authToken = authToken;
     }
 
 
