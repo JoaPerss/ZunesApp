@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.zunes.Model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -36,7 +37,7 @@ public class PostFragment extends Fragment {
     EditText editTextSongName;
     EditText editTextDescription;
 
-    public String songInfoSpotify;
+    private FirebaseAuth auth;
 
 
     @Override
@@ -60,45 +61,38 @@ public class PostFragment extends Fragment {
 
         postFab.setOnClickListener(view1 -> {
             String songName = editTextSongName.getText().toString();
-            String description = editTextDescription.getText().toString();
-
-            String result = spotifySearch(songName);
-
-            MainActivity mainActivity = new MainActivity();
-            String username = "John Doe";//mainActivity.getUsernameOfCurrentUser();
-
-            Post newPost = new Post(result, "@" + username, "", description, "");
-
-            HomeFragment homeFragment = new HomeFragment();
-            homeFragment.addPostToPostList(newPost);
+            spotifySearch(songName);
 
         });
     }
 
-        private String spotifySearch(String songName) {
+        private void spotifySearch(String songName) {
             SpotifyService spotify = getSpotifyService();
-
-            final String[] searchResult = new String[1];
-
 
             spotify.searchTracks(songName, new Callback<TracksPager>() {
             @Override
             public void success(TracksPager tracksPager, Response response) {
                 String fullSong = tracksPager.tracks.items.get(0).artists.get(0).name + " - " + tracksPager.tracks.items.get(0).name;
+                String albumCover = tracksPager.tracks.items.get(0).album.images.get(0).url;
+                String webViewId = tracksPager.tracks.items.get(0).id;
+                String webView = "<iframe \n" + "src=\"https://open.spotify.com/embed/track/\n"+webViewId+"?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>";
 
                 response.toString();
-
                 Log.d("Fant den", response.getReason());
+                Log.d("FULL TRACK", fullSong);
 
-                //setSongInfoSpotify(tracksPager.tracks.items.get(0).artists.get(0).name + " - " + tracksPager.tracks.items.get(0).name);
+                String description = editTextDescription.getText().toString();
 
-                //setSongInfoSpotify(fullSong);
-                searchResult[0] = fullSong;
-                setSongInfoSpotify(searchResult[0]);
+                //Simulate username by converting to lowercase and remove spacing between names
+                auth = FirebaseAuth.getInstance();
+                String displayName = auth.getCurrentUser().getDisplayName();
+                String username = "@" + displayName.toLowerCase().replace(" ", "");
 
-                Log.d("FULL TRACK", songInfoSpotify);
+                Post newPost = new Post(fullSong, username, albumCover, description, webView);
 
-                Log.d("søkeresultat", Arrays.stream(searchResult).findAny().get());
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.addPostToPostList(newPost);
+
             }
 
             @Override
@@ -106,7 +100,6 @@ public class PostFragment extends Fragment {
                 Log.d("Fant ikke", error.getMessage());
             }
         });
-            return songInfoSpotify;
     }
 
     private SpotifyService getSpotifyService() {
@@ -115,15 +108,6 @@ public class PostFragment extends Fragment {
         SpotifyApi api = new SpotifyApi();
         api.setAccessToken(authToken);
         return api.getService();
-    }
-
-
-    public String getSongInfoSpotify() {
-        return songInfoSpotify;
-    }
-
-    public void setSongInfoSpotify(String songInfoSpotify) {
-        this.songInfoSpotify = songInfoSpotify;
     }
 
     private void toolbar() {
