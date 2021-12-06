@@ -25,6 +25,7 @@ import java.util.Objects;
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
 import kaaes.spotify.webapi.android.models.Result;
+import kaaes.spotify.webapi.android.models.Track;
 import kaaes.spotify.webapi.android.models.TracksPager;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -75,9 +76,11 @@ public class PostFragment extends Fragment {
             spotify.searchTracks(songName, new Callback<TracksPager>() {
             @Override
             public void success(TracksPager tracksPager, Response response) {
-                String fullSong = tracksPager.tracks.items.get(0).artists.get(0).name + " - " + tracksPager.tracks.items.get(0).name;
-                String albumCover = tracksPager.tracks.items.get(0).album.images.get(0).url;
-                String webViewId = tracksPager.tracks.items.get(0).id;
+                Track item = tracksPager.tracks.items.get(0);
+
+                String fullSong = item.artists.get(0).name + " - " + item.name;
+                String albumCover = item.album.images.get(0).url;
+                String webViewId = item.id;
                 String webView = "<iframe \n" + "src=\"https://open.spotify.com/embed/track/\n"+webViewId+"?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>";
 
                 response.toString();
