@@ -131,8 +131,7 @@ public class HomeFragment extends Fragment {
         fab.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_postFragment));
     }
     private void toolbar() {
-        Toolbar toolbar;
-        toolbar = requireView().findViewById(R.id.toolbar);
+        Toolbar toolbar = requireView().findViewById(R.id.toolbar);
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
         Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setTitle("Zunes");
     }
