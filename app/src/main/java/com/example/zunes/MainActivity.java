@@ -2,6 +2,7 @@ package com.example.zunes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -50,17 +52,18 @@ public class MainActivity extends AppCompatActivity {
         authStateListener = firebaseAuth -> {
             FirebaseUser currentUser = auth.getCurrentUser();
             if (currentUser == null) {
-                List<AuthUI.IdpConfig> providers = Arrays.asList(
-                        new AuthUI.IdpConfig.EmailBuilder().build(),
-                        new AuthUI.IdpConfig.PhoneBuilder().build());//TODO: Remove phone sign in
+                List<AuthUI.IdpConfig> providers = Collections.singletonList(
+                        new AuthUI.IdpConfig.EmailBuilder().build());
 
                 signInLauncher.launch(AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
+                        .setTheme(R.style.Base_Theme_AppCompat_Light_DarkActionBar)
+                        .setLogo(R.mipmap.ic_launcher_round)
                         .build());
             }
             else {
-                Toast.makeText(getApplicationContext(), "Signed in as " + currentUser.getDisplayName(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Signed in as " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Signed in as " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Signed in cancelled", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Sign in cancelled", Toast.LENGTH_LONG).show();
         }
     }
 }
