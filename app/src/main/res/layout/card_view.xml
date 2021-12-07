@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="songInfo"
+                android:text="@string/songinfo"
                 android:textColor="@color/black"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textColor="@color/black"
-                android:text="userName" />
+                android:text="@string/username" />
 
             <ImageView
                 android:id="@+id/albumCover"
@@ -50,7 +50,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="8dp"
                 android:cropToPadding="false"
-                tools:srcCompat="@tools:sample/avatars[2]" />
+                tools:srcCompat="@tools:sample/avatars[2]"
+                android:contentDescription="@string/albumcover" />
 
             <TextView
                 android:id="@+id/description"
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:textColor="@color/black"
-                android:text="Description" />
+                android:text="@string/description" />
 
             <WebView
                 android:id="@+id/postPlayer"

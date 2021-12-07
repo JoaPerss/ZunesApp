@@ -30,7 +30,6 @@ import java.util.Objects;
 
 
 public class HomeFragment extends Fragment {
-    private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
 
     private List<Post> postList;
@@ -61,7 +60,7 @@ public class HomeFragment extends Fragment {
         postList = new ArrayList<>();
         postIdList = new ArrayList<>();
 
-        recyclerView = view.findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerViewAdapter = new RecyclerViewAdapter(postList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);

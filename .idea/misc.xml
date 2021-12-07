@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/bigger_custom_input.xml" value="0.5755208333333334" />
+        <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/checkmark.xml" value="0.225" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/custom_input.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_back_button_image.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.5755208333333334" />
@@ -12,6 +13,8 @@
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_home.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5755208333333334" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/drawable/ic_search.xml" value="0.5755208333333334" />
+        <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/font/roboto_mono_bold.xml" value="0.2390625" />
+        <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/font/roboto_mono_thin.xml" value="0.2390625" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/activity_second.xml" value="0.25" />
         <entry key="..\:/Users/joach/OneDrive/Zunes/app/src/main/res/layout/activity_spotify_splash.xml" value="0.27001013171225935" />

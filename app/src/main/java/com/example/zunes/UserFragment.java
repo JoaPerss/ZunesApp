@@ -67,15 +67,12 @@ public class UserFragment extends Fragment {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private void logOutUser() {
         Button button = requireView().findViewById(R.id.logOutButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("RestrictedApi")
-            @Override
-            public void onClick(View view) {
-                AuthUI.getInstance().signOut(getApplicationContext());
-                Toast.makeText(getContext(), "Signed out", Toast.LENGTH_LONG).show();
-            }
+        button.setOnClickListener(view -> {
+            AuthUI.getInstance().signOut(getApplicationContext());
+            Toast.makeText(getContext(), "Signed out", Toast.LENGTH_LONG).show();
         });
     }
 

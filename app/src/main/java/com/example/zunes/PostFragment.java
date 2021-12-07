@@ -1,7 +1,6 @@
 package com.example.zunes;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 import kaaes.spotify.webapi.android.SpotifyApi;
 import kaaes.spotify.webapi.android.SpotifyService;
-import kaaes.spotify.webapi.android.models.Result;
 import kaaes.spotify.webapi.android.models.Track;
 import kaaes.spotify.webapi.android.models.TracksPager;
 import retrofit.Callback;
@@ -46,7 +43,7 @@ public class PostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         /// Inflate the layout for this fragment
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         return inflater.inflate(R.layout.fragment_post, container, false);
     }
 
@@ -83,15 +80,12 @@ public class PostFragment extends Fragment {
                 String webViewId = item.id;
                 String webView = "<iframe \n" + "src=\"https://open.spotify.com/embed/track/\n"+webViewId+"?theme=0\" width=\"100%\" height=\"80\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\"></iframe>";
 
-                response.toString();
-                Log.d("Fant den", response.getReason());
-                Log.d("FULL TRACK", fullSong);
-
                 String description = editTextDescription.getText().toString();
 
                 //Simulate username by converting to lowercase and remove spacing between names
                 auth = FirebaseAuth.getInstance();
-                String displayName = auth.getCurrentUser().getDisplayName();
+                String displayName = Objects.requireNonNull(auth.getCurrentUser()).getDisplayName();
+                assert displayName != null;
                 String username = "@" + displayName.toLowerCase().replace(" ", "");
 
                 Post newPost = new Post(fullSong, username, albumCover, description, webView);
@@ -99,13 +93,13 @@ public class PostFragment extends Fragment {
                 HomeFragment homeFragment = new HomeFragment();
                 homeFragment.addPostToPostList(newPost);
 
-                Snackbar.make(getView(),"Post succsessfully posted, check your feed!", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(),"Post succsessfully posted, check your feed!", Snackbar.LENGTH_LONG).show();
 
             }
 
             @Override
             public void failure(RetrofitError error) {
-                Snackbar.make(getView(), "An error occured while searching", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(requireView(), "An error occured while searching", Snackbar.LENGTH_LONG).show();
             }
         });
     }

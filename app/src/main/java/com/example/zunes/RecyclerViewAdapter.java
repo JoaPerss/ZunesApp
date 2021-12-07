@@ -55,11 +55,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.webView.getSettings().setJavaScriptEnabled(true);
         holder.webView.getSettings().setLoadWithOverviewMode(true);
         holder.webView.getSettings().setUseWideViewPort(true);
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
-
-
     }
 
     @Override
@@ -73,7 +68,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         private ImageView albumCover;
         private TextView description;
         private WebView webView;
-        //private CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

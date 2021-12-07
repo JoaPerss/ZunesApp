@@ -10,15 +10,6 @@ public class Post {
     private String description;
     private String webView;
 
-    public Post(String pId, String songInfo, String username, String albumCover, String description, String webView) {
-        this.pId = pId;
-        this.songInfo = songInfo;
-        this.username = username;
-        this.albumCover = albumCover;
-        this.description = description;
-        this.webView = webView;
-    }
-
     public Post(String songInfo, String username, String albumCover, String description, String webView) {
         this.songInfo = songInfo;
         this.username = username;
