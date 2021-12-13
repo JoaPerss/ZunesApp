@@ -55,7 +55,7 @@ public class SpotifySplash extends AppCompatActivity {
                     editor.putString("token", response.getAccessToken());
                     Log.d("STARTING", "GOT AUTH TOKEN");
                     Log.d("TOKEN; ", response.getAccessToken());
-                    Toast.makeText(getApplicationContext(),"Spotify Sign in succsessful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Spotify Sign in successful", Toast.LENGTH_SHORT).show();
                     editor.apply();
 
                     authToken = response.getAccessToken();
@@ -68,7 +68,7 @@ public class SpotifySplash extends AppCompatActivity {
                 case ERROR:
                     // Handle error response
                     Log.d("Error", "error");
-                    Toast.makeText(getApplicationContext(),"Spotify Sign in unsuccsessful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Spotify Sign in unsuccessful, please check internet connection", Toast.LENGTH_LONG).show();
                     break;
 
                 // Most likely auth flow was cancelled
